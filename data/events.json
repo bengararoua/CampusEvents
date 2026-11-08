@@ -1,0 +1,11 @@
+[
+  {
+    "id": 1,
+    "title": "AI Hackathon 2026",
+    "category": "Hackathons",
+    "date": "2026-12-15",
+    "location": "ISET Bizerte",
+    "description": "Hackathon universitaire sur l'intelligence artificielle.",
+    "maxPlaces": 100
+  }
+]
