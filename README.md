@@ -1,4 +1,4 @@
-<img width="408" height="1600" alt="screen" src="https://github.com/user-attachments/assets/5f8180dc-e9bc-4855-a2e1-2fb10bbb2140" /># campusevents
+# campusevents
 
 A new Flutter project.
 
@@ -16,19 +16,23 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 
 <h2>Home_screen</h2>
-<img width="325" height="1600" alt="Home_screen" src="https://github.com/user-attachments/assets/a71817f7-b313-4e68-8496-e9b4343c754b" />
+<img width="325" height="1600" alt="Home_screen" src="https://github.com/user-attachments/assets/a5fe728f-283e-419a-a80c-783e34287b25" />
 
 <h2>Details_Event_screen</h2>
-<img width="487" height="1857" alt="Details_events" src="https://github.com/user-attachments/assets/cac674da-9a03-4849-9862-84e4cdb1a83f" />
+<img width="487" height="1857" alt="Details_events" src="https://github.com/user-attachments/assets/e9b13a82-6f8f-46a3-a84e-70d2698534df" />
 
 <h2>Formulaire_enregistrement_screen</h2>
-<img width="408" height="1600" alt="screen" src="https://github.com/user-attachments/assets/4dea420e-68c1-4356-b14f-b76191f5444c" />
+<img width="487" height="1617" alt="screen" src="https://github.com/user-attachments/assets/f606ab9e-1cf9-4054-becd-46d6c85d770e" />
 
-<h2>Register_Events</h2>
-<img width="408" height="1600" alt="screen" src="https://github.com/user-attachments/assets/f17b7de4-5d0f-4e43-a6bc-e369764d151d" />
+<h2>my_event_registrations_screen</h2>
+<img width="415" height="1600" alt="image" src="https://github.com/user-attachments/assets/4d78fdee-da69-4901-96f2-0a5370467bec" />
 
 <h2>Favorites_screen</h2>
-<img width="340" height="1600" alt="screen" src="https://github.com/user-attachments/assets/37ae95bd-5d7e-4fda-bfd4-c84bbe63f307" />
+<img width="340" height="1600" alt="screen" src="https://github.com/user-attachments/assets/9a73cf07-6147-48ab-afc9-8d9a6c76ac67" />
+
+
+
+
 
 
 
