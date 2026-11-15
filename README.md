@@ -34,30 +34,44 @@ samples, guidance on mobile development, and a full API reference.
 
 ### Captures d'écran
 
-| Home | Event Details | Event Registration |
+| Home (avec bouton +) | Event Details | Event Registration (Étudiant) |
 | --- | --- | --- |
-| ![Home](docs/captures/home.png) | ![Event Details](docs/captures/event_details.png) | ![Event Registration](docs/captures/registration.png) |
+| ![Home](docs/captures/home_screen.png) | ![Event Details](docs/captures/event_details.png) | ![Event Registration](docs/captures/registration.png) |
 
-| Favorites | My Registrations |
-| --- | --- |
-| ![Favorites](docs/captures/favorites.png) | ![My Registrations](docs/captures/my_registration.png) |
+| Favorites | My Registrations | Add Event (Organisateur) |
+| --- | --- | --- |
+| ![Favorites](docs/captures/favorites.png) | ![My Registrations](docs/captures/my_registration.png) | ![Add Event](docs/captures/addEvent_screen.png) |
+
+| Profile |
+| --- |
+| ![Profile](docs/captures/profile_screen.png) |
 
 ### Schéma de navigation
 
-- Home → Event Details (événement touché) → Event Registration
-- Favorites → Event Details (événement touché) → Event Registration
-- My Registrations → Event Details (événement touché) → Event Registration
-- Barre du bas : Home ↔ Favorites ↔ My Events
+- Home → Event Details (clic sur une carte) → Event Registration (bouton "Register Now")
+- Favorites → Event Details (clic sur une carte) → Event Registration
+- My Registrations → Event Details (clic sur une carte) → Event Registration
+- Home → Add Event / Formulaire (clic sur le bouton flottant "+" en bas à droite)
+
+**Navigation principale (Barre du bas) :**
+- Home ↔ Favorites ↔ My Registrations ↔ Profile
 
 ### Structure du code
 
-- `lib/models/` : classes `Event` et `Registration`
-- `lib/data/` : données fictives (8 événements, favoris, inscriptions)
-- `lib/screens/` : les 5 écrans et l'écran principal avec la barre du bas
-- `lib/widgets/` : `EventCard`, la carte d'un événement
+### Structure du code
 
-
-
+- **`lib/models/`** : classes `Event` et `Registration`.
+- **`lib/data/`** : `donnees_fictives.dart` (8 événements, favoris, inscriptions).
+- **`lib/screens/`** : 
+  - `main_screen.dart` (gestion de la barre de navigation du bas)
+  - `home_screen.dart` (écran d'accueil avec le bouton d'ajout)
+  - `event_details_screen.dart`
+  - `event_registration_screen.dart` (formulaire d'inscription étudiant)
+  - `favorites_screen.dart`
+  - `my_registrations_screen.dart`
+  - `formulaire_screen.dart` (formulaire de création d'événement)
+  - `profile_screen.dart` (écran de profil)
+- **`lib/widgets/`** : `event_card.dart` (le composant de la carte d'un événement).
 
 
 
