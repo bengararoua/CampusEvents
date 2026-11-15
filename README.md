@@ -36,11 +36,11 @@ samples, guidance on mobile development, and a full API reference.
 
 | Home | Event Details | Event Registration |
 | --- | --- | --- |
-| ![Home](docs/captures/home.png) | ![Event Details](docs/captures/event_details.png) | ![Event Registration](docs/captures/event_registration.png) |
+| ![Home](docs/captures/home.png) | ![Event Details](docs/captures/event_details.png) | ![Event Registration](docs/captures/registration.png) |
 
 | Favorites | My Registrations |
 | --- | --- |
-| ![Favorites](docs/captures/favorites.png) | ![My Registrations](docs/captures/my_registrations.png) |
+| ![Favorites](docs/captures/favorites.png) | ![My Registrations](docs/captures/my_registration.png) |
 
 ### Schéma de navigation
 
