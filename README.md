@@ -30,6 +30,32 @@ samples, guidance on mobile development, and a full API reference.
 <h2>Favorites_screen</h2>
 <img width="340" height="1600" alt="screen" src="https://github.com/user-attachments/assets/9a73cf07-6147-48ab-afc9-8d9a6c76ac67" />
 
+## Jalon J1 : le squelette
+
+### Captures d'écran
+
+| Home | Event Details | Event Registration |
+| --- | --- | --- |
+| ![Home](docs/captures/home.png) | ![Event Details](docs/captures/event_details.png) | ![Event Registration](docs/captures/event_registration.png) |
+
+| Favorites | My Registrations |
+| --- | --- |
+| ![Favorites](docs/captures/favorites.png) | ![My Registrations](docs/captures/my_registrations.png) |
+
+### Schéma de navigation
+
+- Home → Event Details (événement touché) → Event Registration
+- Favorites → Event Details (événement touché) → Event Registration
+- My Registrations → Event Details (événement touché) → Event Registration
+- Barre du bas : Home ↔ Favorites ↔ My Events
+
+### Structure du code
+
+- `lib/models/` : classes `Event` et `Registration`
+- `lib/data/` : données fictives (8 événements, favoris, inscriptions)
+- `lib/screens/` : les 5 écrans et l'écran principal avec la barre du bas
+- `lib/widgets/` : `EventCard`, la carte d'un événement
+
 
 
 
