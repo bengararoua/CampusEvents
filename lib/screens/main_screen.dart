@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'favorites_screen.dart';
 import 'home_screen.dart';
 import 'my_registrations_screen.dart';
+import 'profile_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -13,10 +14,12 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 0;
 
+  // AJOUT 2 : Ajout de ProfileScreen dans la liste
   final List<Widget> _pages = const [
     HomeScreen(),
     FavoritesScreen(),
     MyRegistrationsScreen(),
+    ProfileScreen(), 
   ];
 
   @override
@@ -45,6 +48,12 @@ class _MainScreenState extends State<MainScreen> {
             icon: Icon(Icons.confirmation_number_outlined),
             selectedIcon: Icon(Icons.confirmation_number),
             label: 'My Events',
+          ),
+          // AJOUT 3 : La destination Profile
+          NavigationDestination(
+            icon: Icon(Icons.person_outline),
+            selectedIcon: Icon(Icons.person),
+            label: 'Profile',
           ),
         ],
       ),
