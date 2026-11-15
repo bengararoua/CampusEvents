@@ -5,26 +5,21 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:campusevents/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('L\'application CampusEvents se lance correctement', (WidgetTester tester) async {
+    // 1. On charge l'application (qui appelle CampusEventsApp maintenant)
+    await tester.pumpWidget(const CampusEventsApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // 2. On vérifie que l'écran d'accueil s'affiche (le titre dans l'AppBar)
+    expect(find.text('CampusEvents'), findsWidgets);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // 3. On vérifie que la barre de navigation en bas est bien là
+    expect(find.text('Home'), findsOneWidget);
+    expect(find.text('Favorites'), findsOneWidget);
+    expect(find.text('My Events'), findsOneWidget);
   });
 }
