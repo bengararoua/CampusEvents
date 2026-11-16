@@ -46,17 +46,22 @@ samples, guidance on mobile development, and a full API reference.
 | --- |
 | ![Profile](docs/captures/profile_screen.png) |
 
+| Explore (avec bouton ajouter) | Profil modifier | Update Form (profile) |
+| --- | --- | --- |
+| ![Explore](docs/captures/explore_screen.png) | ![Profil modifier](docs/captures/profile_screen_avec_modification_button.png) | ![Update Form](docs/captures/edit_profile_screen.png) |
+
 ### Schéma de navigation
 
 - Home → Event Details (clic sur une carte) → Event Registration (bouton "Register Now")
+- Explore → Event Details (clic sur une carte) → Event Registration
+- Explore → Add Event / Formulaire (bouton « Add event »)
 - Favorites → Event Details (clic sur une carte) → Event Registration
 - My Registrations → Event Details (clic sur une carte) → Event Registration
 - Home → Add Event / Formulaire (clic sur le bouton flottant "+" en bas à droite)
+- Profile → Edit Profile (bouton « Modifier le profil »)
 
 **Navigation principale (Barre du bas) :**
-- Home ↔ Favorites ↔ My Registrations ↔ Profile
-
-### Structure du code
+- Home ↔ Explore ↔ Favorites ↔ My Registrations ↔ Profile
 
 ### Structure du code
 
@@ -71,6 +76,8 @@ samples, guidance on mobile development, and a full API reference.
   - `my_registrations_screen.dart`
   - `formulaire_screen.dart` (formulaire de création d'événement)
   - `profile_screen.dart` (écran de profil)
+    - `explore_screen.dart` (tous les événements + bouton d'ajout)
+  - `edit_profile_screen.dart` (formulaire de modification du profil)
 - **`lib/widgets/`** : `event_card.dart` (le composant de la carte d'un événement).
 
 
