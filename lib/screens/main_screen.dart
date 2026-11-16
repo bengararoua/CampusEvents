@@ -3,6 +3,7 @@ import 'favorites_screen.dart';
 import 'home_screen.dart';
 import 'my_registrations_screen.dart';
 import 'profile_screen.dart';
+import 'explore_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -17,6 +18,7 @@ class _MainScreenState extends State<MainScreen> {
   // AJOUT 2 : Ajout de ProfileScreen dans la liste
   final List<Widget> _pages = const [
     HomeScreen(),
+    ExploreScreen(),
     FavoritesScreen(),
     MyRegistrationsScreen(),
     ProfileScreen(), 
@@ -38,6 +40,11 @@ class _MainScreenState extends State<MainScreen> {
             icon: Icon(Icons.home_outlined),
             selectedIcon: Icon(Icons.home),
             label: 'Home',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.explore_outlined),
+            selectedIcon: Icon(Icons.explore),
+            label: 'Explore',
           ),
           NavigationDestination(
             icon: Icon(Icons.favorite_border),
