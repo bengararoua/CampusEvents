@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'edit_profile_screen.dart';
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
@@ -44,6 +44,17 @@ class ProfileScreen extends StatelessWidget {
             leading: const Icon(Icons.calendar_today),
             title: const Text('Année universitaire'),
             subtitle: const Text('2026-2027'),
+          ),
+          const SizedBox(height: 16),
+          FilledButton.icon(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const EditProfileScreen()),
+              );
+            },
+            icon: const Icon(Icons.edit),
+            label: const Text('Modifier le profil'),
           ),
         ],
       ),
