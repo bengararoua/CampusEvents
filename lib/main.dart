@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
-import 'screens/main_screen.dart'; 
+import 'package:provider/provider.dart';
+import 'providers/event_provider.dart';
+import 'screens/main_screen.dart';
 
 void main() {
-  runApp(const CampusEventsApp());
+  runApp(
+    // On enveloppe l'application avec le Provider
+    ChangeNotifierProvider(
+      create: (_) => EventProvider()..loadEvents(),
+      child: const CampusEventsApp(),
+    ),
+  );
 }
 
 class CampusEventsApp extends StatelessWidget {
