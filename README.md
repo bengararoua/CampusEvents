@@ -65,7 +65,7 @@ samples, guidance on mobile development, and a full API reference.
 
 ### Structure du code
 
-- **`lib/models/`** : classes `Event` et `Registration`.
+- **`lib/models/`** : classes `Event` et `Registration` (avec `copyWith` et sérialisation JSON).
 - **`lib/data/`** : `donnees_fictives.dart` (8 événements, favoris, inscriptions).
 - **`lib/screens/`** : 
   - `main_screen.dart` (gestion de la barre de navigation du bas)
@@ -78,8 +78,7 @@ samples, guidance on mobile development, and a full API reference.
   - `profile_screen.dart` (écran de profil)
     - `explore_screen.dart` (tous les événements + bouton d'ajout)
   - `edit_profile_screen.dart` (formulaire de modification du profil)
-- **`lib/widgets/`** : `event_card.dart` (le composant de la carte d'un événement).
-
-
-
-
+- **`lib/widgets/`** : `event_card.dart` (le composant de la carte d'un événement), , `FavoriteButton`, `LoadingView` / `ErrorView`..
+- **`lib/providers/event_provider.dart`** : `EventProvider` (`ChangeNotifier`) qui gère la liste des événements, les favoris, les inscriptions, ainsi que l'état de chargement et d'erreur.
+- **`lib/theme/app_theme.dart`** : thèmes clair et sombre.
+- **`lib/services/event_service.dart`** : récupération réseau des événements.
