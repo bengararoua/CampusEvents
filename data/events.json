@@ -10,7 +10,7 @@
     "organizer": "AI Student Club",
     "capacity": 100,
     "registered": 72,
-    "imageUrl": "assets/images/event_1.jpg"
+    "imageUrl": "assets/images/ai_hackathon.jpg"
   },
   {
     "id": 2,
@@ -23,7 +23,7 @@
     "organizer": "Design Club",
     "capacity": 120,
     "registered": 85,
-    "imageUrl": "assets/images/event_2.jpg"
+    "imageUrl": "assets/images/ui_ux_jam.jpg"
   },
   {
     "id": 3,
@@ -36,7 +36,7 @@
     "organizer": "Robotics Club",
     "capacity": 150,
     "registered": 110,
-    "imageUrl": "assets/images/event_3.jpg"
+    "imageUrl": "assets/images/robotics_showcase.jpg"
   },
   {
     "id": 4,
@@ -49,7 +49,7 @@
     "organizer": "Green Campus Initiative",
     "capacity": 300,
     "registered": 190,
-    "imageUrl": "assets/images/event_4.jpg"
+    "imageUrl": "assets/images/climate_forum.jpg"
   },
   {
     "id": 5,
@@ -62,7 +62,7 @@
     "organizer": "Mobile Dev Club",
     "capacity": 60,
     "registered": 48,
-    "imageUrl": "assets/images/event_5.jpg"
+    "imageUrl": "assets/images/flutter_bootcamp.jpg"
   },
   {
     "id": 6,
@@ -75,7 +75,7 @@
     "organizer": "Business Club",
     "capacity": 200,
     "registered": 130,
-    "imageUrl": "assets/images/event_6.jpg"
+    "imageUrl": "assets/images/fintech_summit.jpg"
   },
   {
     "id": 7,
@@ -88,7 +88,7 @@
     "organizer": "Music Club",
     "capacity": 250,
     "registered": 140,
-    "imageUrl": "assets/images/event_7.jpg"
+    "imageUrl": "assets/images/acoustic_night.jpg"
   },
   {
     "id": 8,
@@ -101,7 +101,7 @@
     "organizer": "Cloud Community",
     "capacity": 80,
     "registered": 61,
-    "imageUrl": "assets/images/event_8.jpg"
+    "imageUrl": "assets/images/google_cloud_workshop.jpg"
   },
   {
     "id": 9,
@@ -114,7 +114,7 @@
     "organizer": "Entrepreneurship Club",
     "capacity": 50,
     "registered": 37,
-    "imageUrl": "assets/images/event_9.jpg"
+    "imageUrl": "assets/images/extra_5.jpg"
   },
   {
     "id": 10,
@@ -127,7 +127,7 @@
     "organizer": "Cyber Security Club",
     "capacity": 180,
     "registered": 95,
-    "imageUrl": "assets/images/event_10.jpg"
+    "imageUrl": "assets/images/extra_6.jpg"
   },
   {
     "id": 11,
@@ -140,7 +140,7 @@
     "organizer": "International Students Office",
     "capacity": 500,
     "registered": 320,
-    "imageUrl": "assets/images/event_11.jpg"
+    "imageUrl": "assets/images/extra_10.jpg"
   },
   {
     "id": 12,
@@ -153,7 +153,7 @@
     "organizer": "Data Science Club",
     "capacity": 70,
     "registered": 52,
-    "imageUrl": "assets/images/event_12.jpg"
+    "imageUrl": "assets/images/extra_11.jpg"
   },
   {
     "id": 13,
@@ -166,7 +166,7 @@
     "organizer": "IEEE Student Branch",
     "capacity": 100,
     "registered": 44,
-    "imageUrl": "assets/images/event_13.jpg"
+    "imageUrl": "assets/images/extra_12.jpg"
   },
   {
     "id": 14,
@@ -179,7 +179,7 @@
     "organizer": "Arts & Culture Club",
     "capacity": 200,
     "registered": 76,
-    "imageUrl": "assets/images/event_14.jpg"
+    "imageUrl": "assets/images/extra_13.jpg"
   },
   {
     "id": 15,
@@ -192,6 +192,6 @@
     "organizer": "Career Center",
     "capacity": 1000,
     "registered": 610,
-    "imageUrl": "assets/images/event_15.jpg"
+    "imageUrl": "assets/images/fintech_summit.jpg"
   }
 ]
