@@ -62,7 +62,13 @@ class Event {
 
   String get day => dateTime.day.toString();
 
-  String get dateLabel => '$monthShort ${dateTime.day}, ${dateTime.year}';
+  /// Date lisible ("Dec 15, 2026"). Si le format n'est pas AAAA-MM-JJ,
+  /// on renvoie le texte tel quel au lieu de planter.
+  String get dateLabel {
+    final parsed = DateTime.tryParse(date);
+    if (parsed == null) return date;
+    return '${months[parsed.month - 1]} ${parsed.day}, ${parsed.year}';
+  }
 
   int get spotsLeft => (capacity - registered).clamp(0, capacity);
 }

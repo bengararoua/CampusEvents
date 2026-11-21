@@ -52,13 +52,23 @@ class EventCard extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       event.title,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                       style: textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     const SizedBox(height: 4),
-                    Text('${event.date} • ${event.time}'),
-                    Text(event.location),
+                    Text(
+                      '${event.dateLabel} • ${event.time}',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    Text(
+                      event.location,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ],
                 ),
               ),
