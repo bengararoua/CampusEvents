@@ -17,8 +17,23 @@ class _EventRegistrationScreenState extends State<EventRegistrationScreen> {
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _studentIdController = TextEditingController();
-  final _departmentController = TextEditingController();
-  final _yearController = TextEditingController();
+  static const _departments = [
+    'Informatique',
+    'Génie Électrique',
+    'Génie Mécanique',
+    'Génie Civil',
+    'Gestion',
+  ];
+  static const _years = [
+    '1ère année',
+    '2ème année',
+    '3ème année',
+    'Master 1',
+    'Master 2',
+  ];
+
+  String? _department;
+  String? _year;
   final _phoneController = TextEditingController();
 
   @override
@@ -26,8 +41,6 @@ class _EventRegistrationScreenState extends State<EventRegistrationScreen> {
     _nameController.dispose();
     _emailController.dispose();
     _studentIdController.dispose();
-    _departmentController.dispose();
-    _yearController.dispose();
     _phoneController.dispose();
     super.dispose();
   }
@@ -40,7 +53,9 @@ class _EventRegistrationScreenState extends State<EventRegistrationScreen> {
   String? _validateName(String? value) {
     final error = _required(value, 'Veuillez saisir votre nom complet');
     if (error != null) return error;
-    if (value!.trim().length < 3) return 'Le nom est trop court (3 caractères min.)';
+    if (value!.trim().length < 3) {
+      return 'Le nom est trop court (3 caractères min.)';
+    }
     return null;
   }
 
@@ -55,7 +70,9 @@ class _EventRegistrationScreenState extends State<EventRegistrationScreen> {
   String? _validateStudentId(String? value) {
     final error = _required(value, 'Veuillez saisir votre identifiant étudiant');
     if (error != null) return error;
-    if (value!.trim().length < 4) return 'Identifiant trop court (4 caractères min.)';
+    if (value!.trim().length < 4) {
+      return 'Identifiant trop court (4 caractères min.)';
+    }
     return null;
   }
 
@@ -72,11 +89,13 @@ class _EventRegistrationScreenState extends State<EventRegistrationScreen> {
   void _submit() {
     if (!_formKey.currentState!.validate()) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Veuillez corriger les erreurs du formulaire')),
+        const SnackBar(
+          content: Text('Veuillez corriger les erreurs du formulaire'),
+        ),
       );
       return;
     }
-    
+
     Navigator.pop(context);
   }
 
@@ -96,7 +115,11 @@ class _EventRegistrationScreenState extends State<EventRegistrationScreen> {
             Card(
               child: ListTile(
                 leading: const Icon(Icons.event),
-                title: Text(event.title, maxLines: 2, overflow: TextOverflow.ellipsis),
+                title: Text(
+                  event.title,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
                 subtitle: Text(
                   '${event.date} • ${event.location}',
                   maxLines: 2,
@@ -141,26 +164,35 @@ class _EventRegistrationScreenState extends State<EventRegistrationScreen> {
               ),
             ),
             const SizedBox(height: 16),
-            TextFormField(
-              controller: _departmentController,
-              textInputAction: TextInputAction.next,
-              validator: (v) => _required(v, 'Veuillez saisir votre département'),
+            DropdownButtonFormField<String>(
+              initialValue: _department,
+              isExpanded: true,
+              validator: (v) =>
+                  v == null ? 'Veuillez choisir votre département' : null,
               decoration: const InputDecoration(
                 labelText: 'Major / Department',
                 prefixIcon: Icon(Icons.school),
                 border: OutlineInputBorder(),
               ),
+              items: _departments
+                  .map((d) => DropdownMenuItem(value: d, child: Text(d)))
+                  .toList(),
+              onChanged: (value) => setState(() => _department = value),
             ),
             const SizedBox(height: 16),
-            TextFormField(
-              controller: _yearController,
-              textInputAction: TextInputAction.next,
-              validator: (v) => _required(v, 'Veuillez saisir votre année'),
+            DropdownButtonFormField<String>(
+              initialValue: _year,
+              isExpanded: true,
+              validator: (v) => v == null ? 'Veuillez choisir votre année' : null,
               decoration: const InputDecoration(
                 labelText: 'Current Academic Year',
                 prefixIcon: Icon(Icons.calendar_month),
                 border: OutlineInputBorder(),
               ),
+              items: _years
+                  .map((y) => DropdownMenuItem(value: y, child: Text(y)))
+                  .toList(),
+              onChanged: (value) => setState(() => _year = value),
             ),
             const SizedBox(height: 16),
             TextFormField(
