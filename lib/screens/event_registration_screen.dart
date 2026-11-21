@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../models/event.dart';
+import '../providers/event_provider.dart';
 
 class EventRegistrationScreen extends StatelessWidget {
   final Event event;
@@ -77,6 +79,17 @@ class EventRegistrationScreen extends StatelessWidget {
           const SizedBox(height: 24),
           FilledButton.icon(
             onPressed: () {
+              Provider.of<EventProvider>(
+                context,
+                listen: false,
+              ).register(event);
+
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Inscription enregistrée avec succès !'),
+                ),
+              );
+
               Navigator.pop(context);
             },
             icon: const Icon(Icons.send),

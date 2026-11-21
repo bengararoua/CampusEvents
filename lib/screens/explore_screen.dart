@@ -111,6 +111,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
               ],
             ),
       floatingActionButton: FloatingActionButton.extended(
+        heroTag: 'explore_fab',
         onPressed: () {
           Navigator.push(
             context,
