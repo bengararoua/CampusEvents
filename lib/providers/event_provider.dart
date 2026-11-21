@@ -7,7 +7,7 @@ import '../services/event_service.dart';
 
 class EventProvider extends ChangeNotifier {
   final EventService _service;
-  List<Event> _events = List.of(data.events);
+   List<Event> _events = [];
   final Set<int> _favoriteIds = data.favorites.map((e) => e.id).toSet();
   final List<Registration> _registrations = List.of(data.registrations);
 
@@ -35,16 +35,15 @@ class EventProvider extends ChangeNotifier {
     try {
       final fetched =
           await _service.fetchEvents().timeout(const Duration(seconds: 10));
-      if (fetched.isNotEmpty) _events = fetched;
+      _events = fetched;
     } catch (_) {
       _errorMessage =
-          'Impossible de charger les événements. Données locales affichées.';
+          'Impossible de charger les événements. Vérifiez votre connexion.';
     }
 
     _isLoading = false;
     notifyListeners();
-  } 
-
+  }
   
   bool isFavorite(int eventId) => _favoriteIds.contains(eventId);
 
