@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../data/donnees_fictives.dart';
 import '../widgets/event_card.dart';
 import 'event_details_screen.dart';
-import 'formulaire_screen.dart'; 
+import 'formulaire_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -23,7 +23,6 @@ class HomeScreen extends StatelessWidget {
             style: textTheme.bodyMedium,
           ),
           const SizedBox(height: 16),
-          // La liste des événements 
           for (final event in events)
             EventCard(
               event: event,
@@ -38,18 +37,14 @@ class HomeScreen extends StatelessWidget {
             ),
         ],
       ),
-      // 2. Le bouton flottant avec le '+'
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Navigation vers ton écran de formulaire
           Navigator.push(
             context,
-            MaterialPageRoute(
-              builder: (_) => const FormulaireScreen(),
-            ),
+            MaterialPageRoute(builder: (_) => const FormulaireScreen()),
           );
         },
-        tooltip: 'Créer un événement', 
+        tooltip: 'Créer un événement',
         child: const Icon(Icons.add),
       ),
     );

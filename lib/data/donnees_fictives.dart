@@ -14,6 +14,7 @@ const List<Event> events = [
     organizer: 'Central Tech & Innovation Society',
     capacity: 400,
     registered: 388,
+    imageUrl: 'assets/images/ai_hackathon.jpg',
   ),
   Event(
     id: 2,
@@ -27,6 +28,7 @@ const List<Event> events = [
     organizer: 'Design Club',
     capacity: 120,
     registered: 78,
+    imageUrl: 'assets/images/ui_ux_jam.jpg',
   ),
   Event(
     id: 3,
@@ -40,6 +42,7 @@ const List<Event> events = [
     organizer: 'IEEE Student Chapter',
     capacity: 150,
     registered: 110,
+    imageUrl: 'assets/images/robotics_showcase.jpg',
   ),
   Event(
     id: 4,
@@ -53,6 +56,7 @@ const List<Event> events = [
     organizer: 'Green Campus Office',
     capacity: 300,
     registered: 190,
+    imageUrl: 'assets/images/climate_forum.jpg',
   ),
   Event(
     id: 5,
@@ -66,6 +70,7 @@ const List<Event> events = [
     organizer: 'Google Developer Student Club',
     capacity: 60,
     registered: 52,
+    imageUrl: 'assets/images/flutter_bootcamp.jpg',
   ),
   Event(
     id: 6,
@@ -79,6 +84,7 @@ const List<Event> events = [
     organizer: 'Central Finance Club',
     capacity: 200,
     registered: 155,
+    imageUrl: 'assets/images/fintech_summit.jpg',
   ),
   Event(
     id: 7,
@@ -92,6 +98,7 @@ const List<Event> events = [
     organizer: 'Cultural Club',
     capacity: 250,
     registered: 92,
+    imageUrl: 'assets/images/acoustic_night.jpg',
   ),
   Event(
     id: 8,
@@ -105,6 +112,7 @@ const List<Event> events = [
     organizer: 'Google Developer Student Club',
     capacity: 80,
     registered: 45,
+    imageUrl: 'assets/images/google_cloud_workshop.jpg',
   ),
 ];
 

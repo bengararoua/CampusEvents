@@ -8,23 +8,6 @@ class EventCard extends StatelessWidget {
 
   const EventCard({super.key, required this.event, required this.onTap});
 
-  IconData _iconFor(String category) {
-    switch (category) {
-      case 'Hackathons':
-        return Icons.code;
-      case 'Competitions':
-        return Icons.emoji_events;
-      case 'Student Clubs':
-        return Icons.groups;
-      case 'Conferences':
-        return Icons.mic;
-      case 'Workshops':
-        return Icons.build;
-      default:
-        return Icons.celebration;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
@@ -32,23 +15,31 @@ class EventCard extends StatelessWidget {
 
     return Card(
       margin: const EdgeInsets.only(bottom: 12),
+      clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(12),
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Row(
             children: [
-              Container(
-                width: 56,
-                height: 56,
-                decoration: BoxDecoration(
-                  color: colors.primaryContainer,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Icon(
-                  _iconFor(event.category),
-                  color: colors.onPrimaryContainer,
+              ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: SizedBox(
+                  width: 56,
+                  height: 56,
+                  child: Image.asset(
+                    event.imageUrl,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Container(
+                        color: colors.primaryContainer,
+                        child: Icon(
+                          Icons.image_not_supported,
+                          color: colors.onPrimaryContainer,
+                        ),
+                      );
+                    },
+                  ),
                 ),
               ),
               const SizedBox(width: 16),
