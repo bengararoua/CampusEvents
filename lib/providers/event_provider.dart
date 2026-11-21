@@ -1,24 +1,30 @@
 import 'package:flutter/foundation.dart';
-
 import '../data/donnees_fictives.dart' as data;
 import '../models/event.dart';
 import '../models/registration.dart';
+import '../services/api_service.dart';
 import '../services/event_service.dart';
 
 class EventProvider extends ChangeNotifier {
   final EventService _service;
-   List<Event> _events = [];
+  final ApiService _api;
+
+  List<Event> _events = [];
   final Set<int> _favoriteIds = data.favorites.map((e) => e.id).toSet();
   final List<Registration> _registrations = List.of(data.registrations);
 
-  EventProvider({EventService? service}) : _service = service ?? EventService();
+  EventProvider({EventService? service, ApiService? api})
+    : _service = service ?? EventService(),
+      _api = api ?? ApiService();
 
   bool _isLoading = false;
   String? _errorMessage;
+  bool _isOnline = false;
   bool _disposed = false;
 
   bool get isLoading => _isLoading;
   String? get errorMessage => _errorMessage;
+  bool get isOnline => _isOnline;
 
   List<Event> get events => List.unmodifiable(_events);
 
@@ -33,9 +39,20 @@ class EventProvider extends ChangeNotifier {
     notifyListeners();
 
     try {
-      final fetched =
-          await _service.fetchEvents().timeout(const Duration(seconds: 10));
+      List<Event> fetched;
+      try {
+        fetched = await _api.fetchEvents();
+        _isOnline = true;
+      } catch (_) {
+        _isOnline = false;
+        fetched = await _service.fetchEvents().timeout(
+          const Duration(seconds: 10),
+        );
+      }
       _events = fetched;
+      if (_isOnline) {
+        await _loadSavedData();
+      }
     } catch (_) {
       _errorMessage =
           'Impossible de charger les événements. Vérifiez votre connexion.';
@@ -44,14 +61,44 @@ class EventProvider extends ChangeNotifier {
     _isLoading = false;
     notifyListeners();
   }
-  
+
+  Future<void> _loadSavedData() async {
+    try {
+      final ids = await _api.fetchFavoriteIds();
+      final saved = await _api.fetchRegistrations(_events);
+      _favoriteIds
+        ..clear()
+        ..addAll(ids);
+      _registrations
+        ..clear()
+        ..addAll(saved);
+    } catch (_) {
+      _isOnline = false;
+    }
+  }
+
+  void _sync(Future<void> Function() action) {
+    if (!_isOnline) return;
+    action().catchError((_) {
+      _isOnline = false;
+      notifyListeners();
+    });
+  }
+
   bool isFavorite(int eventId) => _favoriteIds.contains(eventId);
 
   void toggleFavorite(int eventId) {
-    if (!_favoriteIds.remove(eventId)) {
+    final wasFavorite = _favoriteIds.remove(eventId);
+    if (!wasFavorite) {
       _favoriteIds.add(eventId);
     }
     notifyListeners();
+
+    _sync(
+      () => wasFavorite
+          ? _api.removeFavorite(eventId)
+          : _api.addFavorite(eventId),
+    );
   }
 
   bool isRegistered(int eventId) =>
@@ -59,15 +106,21 @@ class EventProvider extends ChangeNotifier {
 
   void register(Event event, {String status = 'Confirmed'}) {
     if (isRegistered(event.id)) return;
-    _registrations.add(
-      Registration(event: event, status: status, registeredOn: _today()),
+
+    final registration = Registration(
+      event: event,
+      status: status,
+      registeredOn: _today(),
     );
+    _registrations.add(registration);
     notifyListeners();
+    _sync(() => _api.addRegistration(registration));
   }
 
   void cancelRegistration(int eventId) {
     _registrations.removeWhere((r) => r.event.id == eventId);
     notifyListeners();
+    _sync(() => _api.removeRegistration(eventId));
   }
 
   String _today() {

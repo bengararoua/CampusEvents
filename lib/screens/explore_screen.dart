@@ -1,14 +1,74 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../providers/event_provider.dart';
 import '../widgets/event_card.dart';
 import '../widgets/loading_view.dart';
 import 'event_details_screen.dart';
 import 'formulaire_screen.dart';
+import '../services/api_service.dart';
 
-class ExploreScreen extends StatelessWidget {
+class ExploreScreen extends StatefulWidget {
   const ExploreScreen({super.key});
+
+  @override
+  State<ExploreScreen> createState() => _ExploreScreenState();
+}
+
+class _ExploreScreenState extends State<ExploreScreen> {
+  final ApiService _apiService = ApiService();
+  final Set<int> _favoriteIds = {};
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadFavorites();
+  }
+
+  Future<void> _loadFavorites() async {
+    try {
+      final ids = await _apiService.fetchFavoriteIds();
+      setState(() {
+        _favoriteIds.addAll(ids);
+        _isLoading = false;
+      });
+    } catch (e) {
+      setState(() => _isLoading = false);
+      print('Erreur de chargement: $e');
+    }
+  }
+
+  Future<void> _toggleFavorite(int eventId) async {
+    setState(() {
+      if (_favoriteIds.contains(eventId)) {
+        _favoriteIds.remove(eventId);
+      } else {
+        _favoriteIds.add(eventId);
+      }
+    });
+
+    try {
+      if (_favoriteIds.contains(eventId)) {
+        await _apiService.addFavorite(eventId);
+      } else {
+        await _apiService.removeFavorite(eventId);
+      }
+    } catch (e) {
+      print('Erreur API : $e');
+      setState(() {
+        if (_favoriteIds.contains(eventId)) {
+          _favoriteIds.remove(eventId);
+        } else {
+          _favoriteIds.add(eventId);
+        }
+      });
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Erreur de connexion au serveur')),
+        );
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +78,7 @@ class ExploreScreen extends StatelessWidget {
       appBar: AppBar(title: const Text('Explore')),
       body: Consumer<EventProvider>(
         builder: (context, provider, _) {
-          if (provider.isLoading && provider.events.isEmpty) {
+          if (provider.isLoading && provider.events.isEmpty || _isLoading) {
             return const LoadingView(message: 'Chargement des événements…');
           }
 
@@ -63,6 +123,8 @@ class ExploreScreen extends StatelessWidget {
                         ),
                       );
                     },
+                    isFavorite: _favoriteIds.contains(event.id),
+                    onFavoriteToggle: () => _toggleFavorite(event.id),
                   ),
               ],
             ),
@@ -70,6 +132,7 @@ class ExploreScreen extends StatelessWidget {
         },
       ),
       floatingActionButton: FloatingActionButton.extended(
+        heroTag: 'explore_fab',
         onPressed: () {
           Navigator.push(
             context,

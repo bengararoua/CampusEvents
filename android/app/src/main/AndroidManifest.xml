@@ -1,9 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-<<<<<<< HEAD
-=======
     <uses-permission android:name="android.permission.INTERNET"/>
->>>>>>> feature/jalon2-images-assets
     <application
+        android:usesCleartextTraffic="true"
         android:label="campusevents"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../providers/event_provider.dart';
 import '../widgets/event_card.dart';
 import '../widgets/loading_view.dart';
@@ -41,6 +40,25 @@ class HomeScreen extends StatelessWidget {
                   'Find what is happening at your university',
                   style: textTheme.bodyMedium,
                 ),
+                const SizedBox(height: 12),
+                Row(
+                  children: [
+                    Icon(
+                      provider.isOnline ? Icons.cloud_done : Icons.cloud_off,
+                      size: 16,
+                      color: provider.isOnline
+                          ? Theme.of(context).colorScheme.primary
+                          : Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
+                    const SizedBox(width: 6),
+                    Text(
+                      provider.isOnline
+                          ? 'Connected to the MySQL database'
+                          : 'Offline mode: data from the GitHub JSON file',
+                      style: textTheme.bodySmall,
+                    ),
+                  ],
+                ),
                 const SizedBox(height: 16),
                 for (final event in provider.events)
                   EventCard(
@@ -53,6 +71,8 @@ class HomeScreen extends StatelessWidget {
                         ),
                       );
                     },
+                    isFavorite: provider.isFavorite(event.id),
+                    onFavoriteToggle: () => provider.toggleFavorite(event.id),
                   ),
               ],
             ),
@@ -60,6 +80,7 @@ class HomeScreen extends StatelessWidget {
         },
       ),
       floatingActionButton: FloatingActionButton(
+        heroTag: 'home_fab',
         onPressed: () {
           Navigator.push(
             context,

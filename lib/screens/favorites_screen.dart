@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../providers/event_provider.dart';
 import '../widgets/event_card.dart';
 import '../widgets/loading_view.dart';
@@ -18,7 +17,7 @@ class FavoritesScreen extends StatelessWidget {
       body: Consumer<EventProvider>(
         builder: (context, provider, _) {
           if (provider.isLoading && provider.events.isEmpty) {
-            return const LoadingView(message: 'Chargement des événements…');
+            return const LoadingView(message: 'Chargement des favoris…');
           }
 
           if (provider.errorMessage != null && provider.events.isEmpty) {
@@ -27,7 +26,6 @@ class FavoritesScreen extends StatelessWidget {
               onRetry: provider.loadEvents,
             );
           }
-
           final favorites = provider.favoriteEvents;
 
           return ListView(
@@ -40,6 +38,7 @@ class FavoritesScreen extends StatelessWidget {
                 style: textTheme.bodyMedium,
               ),
               const SizedBox(height: 16),
+
               if (favorites.isEmpty)
                 const Padding(
                   padding: EdgeInsets.symmetric(vertical: 48),
@@ -49,19 +48,22 @@ class FavoritesScreen extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                   ),
-                ),
-              for (final event in favorites)
-                EventCard(
-                  event: event,
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => EventDetailsScreen(event: event),
-                      ),
-                    );
-                  },
-                ),
+                )
+              else
+                for (final event in favorites)
+                  EventCard(
+                    event: event,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => EventDetailsScreen(event: event),
+                        ),
+                      );
+                    },
+                    isFavorite: true,
+                    onFavoriteToggle: () => provider.toggleFavorite(event.id),
+                  ),
             ],
           );
         },

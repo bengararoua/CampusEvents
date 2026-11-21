@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../models/event.dart';
+import '../providers/event_provider.dart';
 
 class EventRegistrationScreen extends StatefulWidget {
   final Event event;
@@ -17,6 +19,7 @@ class _EventRegistrationScreenState extends State<EventRegistrationScreen> {
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _studentIdController = TextEditingController();
+
   static const _departments = [
     'Informatique',
     'Génie Électrique',
@@ -68,7 +71,10 @@ class _EventRegistrationScreenState extends State<EventRegistrationScreen> {
   }
 
   String? _validateStudentId(String? value) {
-    final error = _required(value, 'Veuillez saisir votre identifiant étudiant');
+    final error = _required(
+      value,
+      'Veuillez saisir votre identifiant étudiant',
+    );
     if (error != null) return error;
     if (value!.trim().length < 4) {
       return 'Identifiant trop court (4 caractères min.)';
@@ -95,6 +101,11 @@ class _EventRegistrationScreenState extends State<EventRegistrationScreen> {
       );
       return;
     }
+    Provider.of<EventProvider>(context, listen: false).register(widget.event);
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Inscription enregistrée avec succès !')),
+    );
 
     Navigator.pop(context);
   }
@@ -183,7 +194,8 @@ class _EventRegistrationScreenState extends State<EventRegistrationScreen> {
             DropdownButtonFormField<String>(
               initialValue: _year,
               isExpanded: true,
-              validator: (v) => v == null ? 'Veuillez choisir votre année' : null,
+              validator: (v) =>
+                  v == null ? 'Veuillez choisir votre année' : null,
               decoration: const InputDecoration(
                 labelText: 'Current Academic Year',
                 prefixIcon: Icon(Icons.calendar_month),
