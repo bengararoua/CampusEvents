@@ -1,11 +1,137 @@
 [
   {
     "id": 1,
-    "title": "AI Hackathon 2026",
+    "title": "Annual Campus AI Hackathon 2026",
     "category": "Hackathons",
     "date": "2026-12-15",
     "location": "ISET Bizerte",
     "description": "Hackathon universitaire sur l'intelligence artificielle.",
     "maxPlaces": 100
+  },
+  {
+    "id": 2,
+    "title": "UI/UX Campus Design Jam 2026",
+    "category": "Competitions",
+    "date": "2026-12-18",
+    "location": "Design Center, Lab 3",
+    "description": "Un sprint de design d'une journée pour repenser un service du campus.",
+    "maxPlaces": 120
+  },
+  {
+    "id": 3,
+    "title": "Robotics Club Showcase & Sumo Battle",
+    "category": "Student Clubs",
+    "date": "2026-12-20",
+    "location": "Mech Lab Arena",
+    "description": "Venez voir les robots étudiants s'affronter dans une arène de sumo.",
+    "maxPlaces": 150
+  },
+  {
+    "id": 4,
+    "title": "Global Climate & Sustainability Forum",
+    "category": "Conferences",
+    "date": "2026-12-22",
+    "location": "Main Auditorium",
+    "description": "Conférences et tables rondes sur l'action climatique sur le campus.",
+    "maxPlaces": 300
+  },
+  {
+    "id": 5,
+    "title": "Flutter & Mobile Dev Bootcamp",
+    "category": "Workshops",
+    "date": "2026-12-27",
+    "location": "Turing Hall, Room 402",
+    "description": "Atelier pratique pour créer votre première application mobile avec Flutter.",
+    "maxPlaces": 60
+  },
+  {
+    "id": 6,
+    "title": "Fintech & Blockchain Career Summit",
+    "category": "Conferences",
+    "date": "2026-12-29",
+    "location": "Business School Aud. 2",
+    "description": "Rencontrez des professionnels de la finance et des startups.",
+    "maxPlaces": 200
+  },
+  {
+    "id": 7,
+    "title": "Autumn Acoustic Night",
+    "category": "Cultural Events",
+    "date": "2027-01-05",
+    "location": "Student Amphitheater",
+    "description": "Une soirée de musique live en plein air par les groupes étudiants.",
+    "maxPlaces": 250
+  },
+  {
+    "id": 8,
+    "title": "Google Cloud Hands-on Workshop",
+    "category": "Workshops",
+    "date": "2027-01-10",
+    "location": "CS Lab 4, North Wing",
+    "description": "Apprenez les bases du cloud computing et déployez votre première application.",
+    "maxPlaces": 80
+  },
+  {
+    "id": 9,
+    "title": "Startup Pitch Competition",
+    "category": "Competitions",
+    "date": "2027-01-15",
+    "location": "Innovation Hub",
+    "description": "Présentez votre idée de startup devant un jury d'investisseurs.",
+    "maxPlaces": 50
+  },
+  {
+    "id": 10,
+    "title": "Cybersecurity Awareness Conference",
+    "category": "Conferences",
+    "date": "2027-01-20",
+    "location": "Amphitheater B",
+    "description": "Conférence sur les bonnes pratiques en cybersécurité.",
+    "maxPlaces": 180
+  },
+  {
+    "id": 11,
+    "title": "Cultural Food Festival",
+    "category": "Cultural Events",
+    "date": "2027-01-25",
+    "location": "Campus Green",
+    "description": "Découvrez les cuisines du monde préparées par les étudiants.",
+    "maxPlaces": 500
+  },
+  {
+    "id": 12,
+    "title": "Data Science Bootcamp",
+    "category": "Workshops",
+    "date": "2027-02-01",
+    "location": "CS Lab 2",
+    "description": "Introduction à la data science avec Python et Pandas.",
+    "maxPlaces": 70
+  },
+  {
+    "id": 13,
+    "title": "IEEE Student Paper Contest",
+    "category": "Competitions",
+    "date": "2027-02-05",
+    "location": "Engineering Hall",
+    "description": "Compétition de présentation de papers scientifiques.",
+    "maxPlaces": 100
+  },
+  {
+    "id": 14,
+    "title": "Art & Tech Exhibition",
+    "category": "Cultural Events",
+    "date": "2027-02-10",
+    "location": "Gallery 3",
+    "description": "Exposition d'œuvres d'art interactives mêlant technologie et créativité.",
+    "maxPlaces": 200
+  },
+  {
+    "id": 15,
+    "title": "Career Fair 2027",
+    "category": "Conferences",
+    "date": "2027-02-15",
+    "location": "Main Hall",
+    "description": "Rencontrez des recruteurs et découvrez des offres de stage.",
+    "maxPlaces": 1000
   }
 ]
