@@ -6,7 +6,16 @@ class EventCard extends StatelessWidget {
   final Event event;
   final VoidCallback onTap;
 
-  const EventCard({super.key, required this.event, required this.onTap});
+  final bool isFavorite;
+  final VoidCallback? onFavoriteToggle;
+
+  const EventCard({
+    super.key,
+    required this.event,
+    required this.onTap,
+    this.isFavorite = false,
+    this.onFavoriteToggle,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +70,15 @@ class EventCard extends StatelessWidget {
                   ],
                 ),
               ),
+              if (onFavoriteToggle != null)
+                IconButton(
+                  icon: Icon(
+                    isFavorite ? Icons.favorite : Icons.favorite_border,
+                    color: isFavorite ? Colors.red : Colors.grey,
+                  ),
+                  onPressed: onFavoriteToggle,
+                ),
+
               const Icon(Icons.chevron_right),
             ],
           ),
