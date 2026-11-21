@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import '../data/donnees_fictives.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/event_provider.dart';
 import '../widgets/event_card.dart';
+import '../widgets/loading_view.dart';
 import 'event_details_screen.dart';
 
 class FavoritesScreen extends StatelessWidget {
@@ -12,29 +15,56 @@ class FavoritesScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(title: const Text('Favorites')),
-      body: ListView(
-        padding: const EdgeInsets.all(16),
-        children: [
-          Text('Saved Favorites', style: textTheme.headlineSmall),
-          const SizedBox(height: 4),
-          Text(
-            'Quick access to the events you are tracking',
-            style: textTheme.bodyMedium,
-          ),
-          const SizedBox(height: 16),
-          for (final event in favorites)
-            EventCard(
-              event: event,
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => EventDetailsScreen(event: event),
+      body: Consumer<EventProvider>(
+        builder: (context, provider, _) {
+          if (provider.isLoading && provider.events.isEmpty) {
+            return const LoadingView(message: 'Chargement des événements…');
+          }
+
+          if (provider.errorMessage != null && provider.events.isEmpty) {
+            return ErrorView(
+              message: provider.errorMessage!,
+              onRetry: provider.loadEvents,
+            );
+          }
+
+          final favorites = provider.favoriteEvents;
+
+          return ListView(
+            padding: const EdgeInsets.all(16),
+            children: [
+              Text('Saved Favorites', style: textTheme.headlineSmall),
+              const SizedBox(height: 4),
+              Text(
+                'Quick access to the events you are tracking',
+                style: textTheme.bodyMedium,
+              ),
+              const SizedBox(height: 16),
+              if (favorites.isEmpty)
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 48),
+                  child: Center(
+                    child: Text(
+                      'Aucun favori pour le moment.\nAppuyez sur le cœur d\'un événement pour l\'ajouter.',
+                      textAlign: TextAlign.center,
+                    ),
                   ),
-                );
-              },
-            ),
-        ],
+                ),
+              for (final event in favorites)
+                EventCard(
+                  event: event,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => EventDetailsScreen(event: event),
+                      ),
+                    );
+                  },
+                ),
+            ],
+          );
+        },
       ),
     );
   }
