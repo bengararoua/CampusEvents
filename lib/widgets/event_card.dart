@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/event.dart';
+import 'favorite_button.dart';
 
 class EventCard extends StatelessWidget {
   final Event event;
@@ -61,6 +62,7 @@ class EventCard extends StatelessWidget {
                   ],
                 ),
               ),
+              FavoriteButton(event: event),
               const Icon(Icons.chevron_right),
             ],
           ),
