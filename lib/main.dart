@@ -14,11 +14,9 @@ class CampusEventsApp extends StatelessWidget {
       title: 'CampusEvents',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        // Le bleu de votre charte graphique
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF2563EB)),
         useMaterial3: true,
       ),
-      // On lance l'application sur la barre de navigation
       home: const MainScreen(),
     );
   }

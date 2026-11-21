@@ -5,8 +5,7 @@ import 'package:http/http.dart' as http;
 import '../models/event.dart';
 
 class EventService {
-  static const String url =
-      'https://raw.githubusercontent.com/bengararoua/CampusEvents/main/data/events.json';
+  static const String url = 'http://localhost/backend/events.php';
 
   Future<List<Event>> fetchEvents() async {
     final response = await http.get(Uri.parse(url));
