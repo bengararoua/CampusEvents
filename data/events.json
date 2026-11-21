@@ -2,136 +2,196 @@
   {
     "id": 1,
     "title": "Annual Campus AI Hackathon 2026",
+    "description": "Hackathon universitaire sur l'intelligence artificielle.",
     "category": "Hackathons",
     "date": "2026-12-15",
+    "time": "09:00 AM",
     "location": "ISET Bizerte",
-    "description": "Hackathon universitaire sur l'intelligence artificielle.",
-    "maxPlaces": 100
+    "organizer": "AI Student Club",
+    "capacity": 100,
+    "registered": 72,
+    "imageUrl": "assets/images/event_1.jpg"
   },
   {
     "id": 2,
     "title": "UI/UX Campus Design Jam 2026",
+    "description": "Un sprint de design d'une journée pour repenser un service du campus.",
     "category": "Competitions",
     "date": "2026-12-18",
+    "time": "10:00 AM",
     "location": "Design Center, Lab 3",
-    "description": "Un sprint de design d'une journée pour repenser un service du campus.",
-    "maxPlaces": 120
+    "organizer": "Design Club",
+    "capacity": 120,
+    "registered": 85,
+    "imageUrl": "assets/images/event_2.jpg"
   },
   {
     "id": 3,
     "title": "Robotics Club Showcase & Sumo Battle",
+    "description": "Venez voir les robots étudiants s'affronter dans une arène de sumo.",
     "category": "Student Clubs",
     "date": "2026-12-20",
+    "time": "02:00 PM",
     "location": "Mech Lab Arena",
-    "description": "Venez voir les robots étudiants s'affronter dans une arène de sumo.",
-    "maxPlaces": 150
+    "organizer": "Robotics Club",
+    "capacity": 150,
+    "registered": 110,
+    "imageUrl": "assets/images/event_3.jpg"
   },
   {
     "id": 4,
     "title": "Global Climate & Sustainability Forum",
+    "description": "Conférences et tables rondes sur l'action climatique sur le campus.",
     "category": "Conferences",
     "date": "2026-12-22",
+    "time": "09:30 AM",
     "location": "Main Auditorium",
-    "description": "Conférences et tables rondes sur l'action climatique sur le campus.",
-    "maxPlaces": 300
+    "organizer": "Green Campus Initiative",
+    "capacity": 300,
+    "registered": 190,
+    "imageUrl": "assets/images/event_4.jpg"
   },
   {
     "id": 5,
     "title": "Flutter & Mobile Dev Bootcamp",
+    "description": "Atelier pratique pour créer votre première application mobile avec Flutter.",
     "category": "Workshops",
     "date": "2026-12-27",
+    "time": "09:00 AM",
     "location": "Turing Hall, Room 402",
-    "description": "Atelier pratique pour créer votre première application mobile avec Flutter.",
-    "maxPlaces": 60
+    "organizer": "Mobile Dev Club",
+    "capacity": 60,
+    "registered": 48,
+    "imageUrl": "assets/images/event_5.jpg"
   },
   {
     "id": 6,
     "title": "Fintech & Blockchain Career Summit",
+    "description": "Rencontrez des professionnels de la finance et des startups.",
     "category": "Conferences",
     "date": "2026-12-29",
+    "time": "11:00 AM",
     "location": "Business School Aud. 2",
-    "description": "Rencontrez des professionnels de la finance et des startups.",
-    "maxPlaces": 200
+    "organizer": "Business Club",
+    "capacity": 200,
+    "registered": 130,
+    "imageUrl": "assets/images/event_6.jpg"
   },
   {
     "id": 7,
     "title": "Autumn Acoustic Night",
+    "description": "Une soirée de musique live en plein air par les groupes étudiants.",
     "category": "Cultural Events",
     "date": "2027-01-05",
+    "time": "07:00 PM",
     "location": "Student Amphitheater",
-    "description": "Une soirée de musique live en plein air par les groupes étudiants.",
-    "maxPlaces": 250
+    "organizer": "Music Club",
+    "capacity": 250,
+    "registered": 140,
+    "imageUrl": "assets/images/event_7.jpg"
   },
   {
     "id": 8,
     "title": "Google Cloud Hands-on Workshop",
+    "description": "Apprenez les bases du cloud computing et déployez votre première application.",
     "category": "Workshops",
     "date": "2027-01-10",
+    "time": "10:00 AM",
     "location": "CS Lab 4, North Wing",
-    "description": "Apprenez les bases du cloud computing et déployez votre première application.",
-    "maxPlaces": 80
+    "organizer": "Cloud Community",
+    "capacity": 80,
+    "registered": 61,
+    "imageUrl": "assets/images/event_8.jpg"
   },
   {
     "id": 9,
     "title": "Startup Pitch Competition",
+    "description": "Présentez votre idée de startup devant un jury d'investisseurs.",
     "category": "Competitions",
     "date": "2027-01-15",
+    "time": "02:00 PM",
     "location": "Innovation Hub",
-    "description": "Présentez votre idée de startup devant un jury d'investisseurs.",
-    "maxPlaces": 50
+    "organizer": "Entrepreneurship Club",
+    "capacity": 50,
+    "registered": 37,
+    "imageUrl": "assets/images/event_9.jpg"
   },
   {
     "id": 10,
     "title": "Cybersecurity Awareness Conference",
+    "description": "Conférence sur les bonnes pratiques en cybersécurité.",
     "category": "Conferences",
     "date": "2027-01-20",
+    "time": "10:30 AM",
     "location": "Amphitheater B",
-    "description": "Conférence sur les bonnes pratiques en cybersécurité.",
-    "maxPlaces": 180
+    "organizer": "Cyber Security Club",
+    "capacity": 180,
+    "registered": 95,
+    "imageUrl": "assets/images/event_10.jpg"
   },
   {
     "id": 11,
     "title": "Cultural Food Festival",
+    "description": "Découvrez les cuisines du monde préparées par les étudiants.",
     "category": "Cultural Events",
     "date": "2027-01-25",
+    "time": "12:00 PM",
     "location": "Campus Green",
-    "description": "Découvrez les cuisines du monde préparées par les étudiants.",
-    "maxPlaces": 500
+    "organizer": "International Students Office",
+    "capacity": 500,
+    "registered": 320,
+    "imageUrl": "assets/images/event_11.jpg"
   },
   {
     "id": 12,
     "title": "Data Science Bootcamp",
+    "description": "Introduction à la data science avec Python et Pandas.",
     "category": "Workshops",
     "date": "2027-02-01",
+    "time": "09:00 AM",
     "location": "CS Lab 2",
-    "description": "Introduction à la data science avec Python et Pandas.",
-    "maxPlaces": 70
+    "organizer": "Data Science Club",
+    "capacity": 70,
+    "registered": 52,
+    "imageUrl": "assets/images/event_12.jpg"
   },
   {
     "id": 13,
     "title": "IEEE Student Paper Contest",
+    "description": "Compétition de présentation de papers scientifiques.",
     "category": "Competitions",
     "date": "2027-02-05",
+    "time": "01:30 PM",
     "location": "Engineering Hall",
-    "description": "Compétition de présentation de papers scientifiques.",
-    "maxPlaces": 100
+    "organizer": "IEEE Student Branch",
+    "capacity": 100,
+    "registered": 44,
+    "imageUrl": "assets/images/event_13.jpg"
   },
   {
     "id": 14,
     "title": "Art & Tech Exhibition",
+    "description": "Exposition d'œuvres d'art interactives mêlant technologie et créativité.",
     "category": "Cultural Events",
     "date": "2027-02-10",
+    "time": "11:00 AM",
     "location": "Gallery 3",
-    "description": "Exposition d'œuvres d'art interactives mêlant technologie et créativité.",
-    "maxPlaces": 200
+    "organizer": "Arts & Culture Club",
+    "capacity": 200,
+    "registered": 76,
+    "imageUrl": "assets/images/event_14.jpg"
   },
   {
     "id": 15,
     "title": "Career Fair 2027",
+    "description": "Rencontrez des recruteurs et découvrez des offres de stage.",
     "category": "Conferences",
     "date": "2027-02-15",
+    "time": "09:00 AM",
     "location": "Main Hall",
-    "description": "Rencontrez des recruteurs et découvrez des offres de stage.",
-    "maxPlaces": 1000
+    "organizer": "Career Center",
+    "capacity": 1000,
+    "registered": 610,
+    "imageUrl": "assets/images/event_15.jpg"
   }
 ]
