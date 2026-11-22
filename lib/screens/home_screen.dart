@@ -5,7 +5,7 @@ import '../widgets/event_card.dart';
 import '../widgets/loading_view.dart';
 import 'event_details_screen.dart';
 import 'formulaire_screen.dart';
-
+import '../models/event.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -81,11 +81,16 @@ class HomeScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         heroTag: 'home_fab',
-        onPressed: () {
-          Navigator.push(
+        onPressed: () async {
+          final created = await Navigator.push<Event>(
             context,
             MaterialPageRoute(builder: (_) => const FormulaireScreen()),
           );
+          if (created != null && context.mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('Événement « ${created.title} » créé')),
+            );
+          }
         },
         tooltip: 'Créer un événement',
         child: const Icon(Icons.add),

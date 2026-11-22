@@ -6,7 +6,7 @@ import '../widgets/event_card.dart';
 import '../widgets/loading_view.dart';
 import 'event_details_screen.dart';
 import 'formulaire_screen.dart';
-
+import '../models/event.dart';
 class ExploreScreen extends StatelessWidget {
   const ExploreScreen({super.key});
 
@@ -73,11 +73,16 @@ class ExploreScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton.extended(
         heroTag: 'explore_fab',
-        onPressed: () {
-          Navigator.push(
+        onPressed: () async {
+          final created = await Navigator.push<Event>(
             context,
             MaterialPageRoute(builder: (_) => const FormulaireScreen()),
           );
+          if (created != null && context.mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('Événement « ${created.title} » créé')),
+            );
+          }
         },
         icon: const Icon(Icons.add),
         label: const Text('Add event'),
