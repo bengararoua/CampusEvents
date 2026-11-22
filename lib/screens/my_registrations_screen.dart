@@ -1,11 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../models/registration.dart';
 import '../providers/event_provider.dart';
 import 'event_details_screen.dart';
 
 class MyRegistrationsScreen extends StatelessWidget {
   const MyRegistrationsScreen({super.key});
+
+  Future<void> _confirmCancel(
+    BuildContext context,
+    Registration registration,
+  ) async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: const Text('Annuler l\'inscription ?'),
+        content: Text(registration.event.title),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext, false),
+            child: const Text('Garder'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(dialogContext, true),
+            child: const Text('Annuler l\'inscription'),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed == true && context.mounted) {
+      context.read<EventProvider>().cancelRegistration(registration.event.id);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Inscription annulée')),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,12 +93,16 @@ class MyRegistrationsScreen extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
                 subtitle: Text(
-                  '${registration.event.date} • ${registration.event.time}\n'
+                  '${registration.event.dateLabel} • ${registration.event.time}\n'
                   'Status: ${registration.status}\n'
                   'Registered on ${registration.registeredOn}',
                 ),
                 isThreeLine: true,
-                trailing: const Icon(Icons.chevron_right),
+                trailing: IconButton(
+                  tooltip: 'Annuler l\'inscription',
+                  icon: Icon(Icons.cancel_outlined, color: colors.error),
+                  onPressed: () => _confirmCancel(context, registration),
+                ),
                 onTap: () {
                   Navigator.push(
                     context,
