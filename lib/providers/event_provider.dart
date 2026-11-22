@@ -89,9 +89,22 @@ class EventProvider extends ChangeNotifier {
   int get nextEventId =>
       _events.isEmpty ? 1 : _events.map((e) => e.id).reduce((a, b) => a > b ? a : b) + 1;
 
-  void addEvent(Event event) {
-    _events = [..._events, event];
+  /// Crée un événement. En ligne : POST vers MySQL, l'id vient du serveur.
+  /// Hors ligne ou en cas d'échec : l'événement reste en mémoire, sans plantage.
+  Future<Event> addEvent(Event event) async {
+    var saved = event;
+
+    if (_isOnline) {
+      try {
+        saved = await _api.addEvent(event);
+      } catch (_) {
+        _isOnline = false;
+      }
+    }
+
+    _events = [..._events, saved];
     notifyListeners();
+    return saved;
   }
   void toggleFavorite(int eventId) {
     final wasFavorite = _favoriteIds.remove(eventId);
