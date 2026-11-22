@@ -30,6 +30,7 @@ class _FormulaireScreenState extends State<FormulaireScreen> {
   final _dateController = TextEditingController();
 
   String? _category;
+    bool _isSaving = false;
 
   @override
   void dispose() {
@@ -82,7 +83,7 @@ class _FormulaireScreenState extends State<FormulaireScreen> {
     return null;
   }
 
-  void _submit() {
+  Future<void> _submit() async {
     if (!_formKey.currentState!.validate()) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -107,8 +108,10 @@ class _FormulaireScreenState extends State<FormulaireScreen> {
       imageUrl: _defaultImage,
     );
 
-    provider.addEvent(event);
-    Navigator.pop(context, event);
+    setState(() => _isSaving = true);
+    final saved = await provider.addEvent(event);
+    if (!mounted) return;
+    Navigator.pop(context, saved);
   }
 
   @override
@@ -197,8 +200,14 @@ class _FormulaireScreenState extends State<FormulaireScreen> {
               ),
               const SizedBox(height: 32),
               FilledButton(
-                onPressed: _submit,
-                child: const Text('Enregistrer l\'événement'),
+                onPressed: _isSaving ? null : _submit,
+                child: _isSaving
+                    ? const SizedBox(
+                        width: 20,
+                        height: 20,
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      )
+                    : const Text('Enregistrer l\'événement'),
               ),
             ],
           ),
