@@ -69,6 +69,27 @@ class ApiService {
         .map((item) => Event.fromJson(item as Map<String, dynamic>))
         .toList();
   }
+    /// POST events.php : renvoie l'événement tel qu'enregistré (avec l'id MySQL).
+  Future<Event> addEvent(Event event) async {
+    try {
+      final response = await http
+          .post(
+            _uri('events.php'),
+            headers: {'Content-Type': 'application/json'},
+            body: jsonEncode(event.toJson()),
+          )
+          .timeout(_timeout);
+
+      if (response.statusCode >= 400) {
+        throw Exception('Erreur serveur (${response.statusCode})');
+      }
+
+      final decoded = jsonDecode(utf8.decode(response.bodyBytes));
+      return Event.fromJson(decoded as Map<String, dynamic>);
+    } catch (e) {
+      throw Exception('Erreur lors de la création de l\'événement: $e');
+    }
+  }
 
   Future<Set<int>> fetchFavoriteIds() async {
     final data = await _getList('favorites.php');

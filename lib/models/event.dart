@@ -57,7 +57,19 @@ class Event {
   }
 
   DateTime get dateTime => DateTime.parse(date);
-
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'title': title,
+        'description': description,
+        'category': category,
+        'date': date,
+        'time': time,
+        'location': location,
+        'organizer': organizer,
+        'capacity': capacity,
+        'registered': registered,
+        'imageUrl': imageUrl,
+      };
   String get monthShort => months[dateTime.month - 1];
 
   String get day => dateTime.day.toString();
