@@ -101,14 +101,10 @@ class _EventRegistrationScreenState extends State<EventRegistrationScreen> {
       );
       return;
     }
-    Provider.of<EventProvider>(context, listen: false).register(widget.event);
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Inscription enregistrée avec succès !')),
-    );
-
-    Navigator.pop(context);
+    context.read<EventProvider>().register(widget.event);
+    Navigator.pop(context, true);
   }
+
 
   @override
   Widget build(BuildContext context) {

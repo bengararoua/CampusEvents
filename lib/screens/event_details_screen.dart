@@ -1,18 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import '../models/event.dart';
-import 'event_registration_screen.dart';
+import '../providers/event_provider.dart';
 import '../widgets/favorite_button.dart';
+import 'event_registration_screen.dart';
+
 class EventDetailsScreen extends StatelessWidget {
   final Event event;
 
   const EventDetailsScreen({super.key, required this.event});
 
+  /// Ouvre le formulaire et récupère son résultat (EF4).
+  Future<void> _openRegistration(BuildContext context) async {
+    final registered = await Navigator.push<bool>(
+      context,
+      MaterialPageRoute(
+        builder: (_) => EventRegistrationScreen(event: event),
+      ),
+    );
+
+    if (registered == true && context.mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Inscription confirmée pour « ${event.title} »')),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final isRegistered = context.select<EventProvider, bool>(
+      (provider) => provider.isRegistered(event.id),
+    );
 
     return Scaffold(
-            appBar: AppBar(
+      appBar: AppBar(
         title: const Text('Event Details'),
         actions: [FavoriteButton(event: event)],
       ),
@@ -45,7 +68,9 @@ class EventDetailsScreen extends StatelessWidget {
             const SizedBox(height: 16),
             Text('Registration capacity', style: textTheme.titleMedium),
             const SizedBox(height: 8),
-            LinearProgressIndicator(value: event.registered / event.capacity),
+            LinearProgressIndicator(
+              value: event.capacity == 0 ? 0 : event.registered / event.capacity,
+            ),
             const SizedBox(height: 8),
             Text(
               '${event.registered} registered • ${event.spotsLeft} spots left of ${event.capacity}',
@@ -60,18 +85,17 @@ class EventDetailsScreen extends StatelessWidget {
       bottomNavigationBar: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16),
-          child: FilledButton.icon(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => EventRegistrationScreen(event: event),
+          child: isRegistered
+              ? FilledButton.tonalIcon(
+                  onPressed: null,
+                  icon: const Icon(Icons.check_circle),
+                  label: const Text('Already registered'),
+                )
+              : FilledButton.icon(
+                  onPressed: () => _openRegistration(context),
+                  icon: const Icon(Icons.how_to_reg),
+                  label: const Text('Register Now'),
                 ),
-              );
-            },
-            icon: const Icon(Icons.how_to_reg),
-            label: const Text('Register Now'),
-          ),
         ),
       ),
     );
