@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/event.dart';
 import 'event_registration_screen.dart';
-
+import '../widgets/favorite_button.dart';
 class EventDetailsScreen extends StatelessWidget {
   final Event event;
 
@@ -12,7 +12,10 @@ class EventDetailsScreen extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Event Details')),
+            appBar: AppBar(
+        title: const Text('Event Details'),
+        actions: [FavoriteButton(event: event)],
+      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -29,7 +32,7 @@ class EventDetailsScreen extends StatelessWidget {
                 children: [
                   ListTile(
                     leading: const Icon(Icons.calendar_today),
-                    title: Text(event.date),
+                    title: Text(event.dateLabel),
                     subtitle: Text(event.time),
                   ),
                   ListTile(
