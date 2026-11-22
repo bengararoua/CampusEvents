@@ -86,7 +86,13 @@ class EventProvider extends ChangeNotifier {
   }
 
   bool isFavorite(int eventId) => _favoriteIds.contains(eventId);
+  int get nextEventId =>
+      _events.isEmpty ? 1 : _events.map((e) => e.id).reduce((a, b) => a > b ? a : b) + 1;
 
+  void addEvent(Event event) {
+    _events = [..._events, event];
+    notifyListeners();
+  }
   void toggleFavorite(int eventId) {
     final wasFavorite = _favoriteIds.remove(eventId);
     if (!wasFavorite) {
