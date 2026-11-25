@@ -10,7 +10,7 @@ class EventImage extends StatelessWidget {
     final colors = Theme.of(context).colorScheme;
 
     return ClipRRect(
-      borderRadius: BorderRadius.circular(12),
+      borderRadius: BorderRadius.circular(20),
       child: AspectRatio(
         aspectRatio: 16 / 9,
         child: Image.asset(

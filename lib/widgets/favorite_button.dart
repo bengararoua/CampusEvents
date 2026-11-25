@@ -11,15 +11,19 @@ class FavoriteButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
     final isFavorite = context.select<EventProvider, bool>(
       (provider) => provider.isFavorite(event.id),
     );
 
     return IconButton(
       tooltip: isFavorite ? 'Retirer des favoris' : 'Ajouter aux favoris',
+      style: IconButton.styleFrom(
+        backgroundColor: colors.surfaceContainerLowest,
+      ),
       icon: Icon(
         isFavorite ? Icons.favorite : Icons.favorite_border,
-        color: isFavorite ? Theme.of(context).colorScheme.error : null,
+        color: isFavorite ? colors.error : colors.onSurfaceVariant,
       ),
       onPressed: () => context.read<EventProvider>().toggleFavorite(event.id),
     );

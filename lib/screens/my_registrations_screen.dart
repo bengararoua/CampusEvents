@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../models/registration.dart';
 import '../providers/event_provider.dart';
+import '../widgets/info_pill.dart';
 import 'event_details_screen.dart';
 
 class MyRegistrationsScreen extends StatelessWidget {
@@ -47,13 +48,20 @@ class MyRegistrationsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('My Registrations')),
       body: ListView(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.fromLTRB(20, 8, 20, 20),
         children: [
-          Text('My Registrations', style: textTheme.headlineSmall),
+          Text(
+            'My Registrations',
+            style: textTheme.headlineSmall?.copyWith(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           const SizedBox(height: 4),
           Text(
             'Manage your passes and registration status',
-            style: textTheme.bodyMedium,
+            style: textTheme.bodyMedium?.copyWith(
+              color: colors.onSurfaceVariant,
+            ),
           ),
           const SizedBox(height: 16),
           if (registrations.isEmpty)
@@ -65,44 +73,7 @@ class MyRegistrationsScreen extends StatelessWidget {
             Card(
               margin: const EdgeInsets.only(bottom: 12),
               clipBehavior: Clip.antiAlias,
-              child: ListTile(
-                contentPadding: const EdgeInsets.all(16),
-                leading: ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: SizedBox(
-                    width: 56,
-                    height: 56,
-                    child: Image.asset(
-                      registration.event.imageUrl,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) {
-                        return Container(
-                          color: colors.primaryContainer,
-                          child: Icon(
-                            Icons.confirmation_number,
-                            color: colors.onPrimaryContainer,
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                ),
-                title: Text(
-                  registration.event.title,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                subtitle: Text(
-                  '${registration.event.dateLabel} • ${registration.event.time}\n'
-                  'Status: ${registration.status}\n'
-                  'Registered on ${registration.registeredOn}',
-                ),
-                isThreeLine: true,
-                trailing: IconButton(
-                  tooltip: 'Annuler l\'inscription',
-                  icon: Icon(Icons.cancel_outlined, color: colors.error),
-                  onPressed: () => _confirmCancel(context, registration),
-                ),
+              child: InkWell(
                 onTap: () {
                   Navigator.push(
                     context,
@@ -112,6 +83,78 @@ class MyRegistrationsScreen extends StatelessWidget {
                     ),
                   );
                 },
+                child: Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: Row(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(14),
+                        child: SizedBox(
+                          width: 72,
+                          height: 72,
+                          child: Image.asset(
+                            registration.event.imageUrl,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) {
+                              return Container(
+                                color: colors.primaryContainer,
+                                child: Icon(
+                                  Icons.confirmation_number,
+                                  color: colors.onPrimaryContainer,
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              registration.event.title,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: textTheme.titleSmall?.copyWith(
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              '${registration.event.dateLabel} • ${registration.event.time}',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: textTheme.bodySmall?.copyWith(
+                                color: colors.onSurfaceVariant,
+                              ),
+                            ),
+                            Text(
+                              'Registered on ${registration.registeredOn}',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: textTheme.bodySmall?.copyWith(
+                                color: colors.onSurfaceVariant,
+                              ),
+                            ),
+                            const SizedBox(height: 6),
+                            InfoPill(
+                              text: registration.status,
+                              icon: Icons.check_circle,
+                              background: colors.primary.withValues(alpha: 0.12),
+                              foreground: colors.primary,
+                            ),
+                          ],
+                        ),
+                      ),
+                      IconButton(
+                        tooltip: 'Annuler l\'inscription',
+                        icon: Icon(Icons.cancel_outlined, color: colors.error),
+                        onPressed: () => _confirmCancel(context, registration),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
         ],

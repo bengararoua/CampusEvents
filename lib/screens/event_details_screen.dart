@@ -3,7 +3,9 @@ import 'package:provider/provider.dart';
 
 import '../models/event.dart';
 import '../providers/event_provider.dart';
+import '../widgets/event_image.dart';
 import '../widgets/favorite_button.dart';
+import '../widgets/info_pill.dart';
 import 'event_registration_screen.dart';
 
 class EventDetailsScreen extends StatelessWidget {
@@ -30,6 +32,7 @@ class EventDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final colors = Theme.of(context).colorScheme;
     final isRegistered = context.select<EventProvider, bool>(
       (provider) => provider.isRegistered(event.id),
     );
@@ -40,15 +43,31 @@ class EventDetailsScreen extends StatelessWidget {
         actions: [FavoriteButton(event: event)],
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.fromLTRB(20, 8, 20, 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Chip(label: Text(event.category)),
+            EventImage(url: event.imageUrl),
+            const SizedBox(height: 16),
+            InfoPill(
+              text: event.category,
+              background: colors.primary.withValues(alpha: 0.12),
+              foreground: colors.primary,
+            ),
             const SizedBox(height: 12),
-            Text(event.title, style: textTheme.headlineSmall),
+            Text(
+              event.title,
+              style: textTheme.headlineSmall?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             const SizedBox(height: 4),
-            Text('Hosted by ${event.organizer}', style: textTheme.bodyMedium),
+            Text(
+              'Hosted by ${event.organizer}',
+              style: textTheme.bodyMedium?.copyWith(
+                color: colors.onSurfaceVariant,
+              ),
+            ),
             const SizedBox(height: 16),
             Card(
               child: Column(
@@ -66,9 +85,14 @@ class EventDetailsScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            Text('Registration capacity', style: textTheme.titleMedium),
+            Text(
+              'Registration capacity',
+              style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+            ),
             const SizedBox(height: 8),
             LinearProgressIndicator(
+              minHeight: 8,
+              borderRadius: BorderRadius.circular(8),
               value: event.capacity == 0 ? 0 : event.registered / event.capacity,
             ),
             const SizedBox(height: 8),
@@ -76,7 +100,10 @@ class EventDetailsScreen extends StatelessWidget {
               '${event.registered} registered • ${event.spotsLeft} spots left of ${event.capacity}',
             ),
             const SizedBox(height: 24),
-            Text('About the event', style: textTheme.titleMedium),
+            Text(
+              'About the event',
+              style: textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+            ),
             const SizedBox(height: 8),
             Text(event.description),
           ],
