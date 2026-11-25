@@ -29,13 +29,20 @@ class FavoritesScreen extends StatelessWidget {
           final favorites = provider.favoriteEvents;
 
           return ListView(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.fromLTRB(20, 8, 20, 20),
             children: [
-              Text('Saved Favorites', style: textTheme.headlineSmall),
+              Text(
+                'Saved Favorites',
+                style: textTheme.headlineSmall?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               const SizedBox(height: 4),
               Text(
                 'Quick access to the events you are tracking',
-                style: textTheme.bodyMedium,
+                style: textTheme.bodyMedium?.copyWith(
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                ),
               ),
               const SizedBox(height: 16),
 

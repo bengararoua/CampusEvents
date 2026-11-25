@@ -35,20 +35,26 @@ class ExploreScreen extends StatelessWidget {
             onRefresh: provider.loadEvents,
             child: ListView(
               physics: const AlwaysScrollableScrollPhysics(),
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.fromLTRB(20, 8, 20, 96),
               children: [
-                Text('All Events', style: textTheme.headlineSmall),
+                Text(
+                  'All Events',
+                  style: textTheme.headlineSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
                 const SizedBox(height: 4),
                 Text(
                   '${events.length} events on campus',
-                  style: textTheme.bodyMedium,
+                  style: textTheme.bodyMedium?.copyWith(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  ),
                 ),
                 const SizedBox(height: 16),
                 const TextField(
                   decoration: InputDecoration(
                     hintText: 'Search events',
                     prefixIcon: Icon(Icons.search),
-                    border: OutlineInputBorder(),
                   ),
                 ),
                 const SizedBox(height: 16),
