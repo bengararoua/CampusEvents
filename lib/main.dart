@@ -3,11 +3,15 @@ import 'package:provider/provider.dart';
 import 'providers/event_provider.dart';
 import 'screens/main_screen.dart';
 import 'theme/app_theme.dart';
+import 'providers/reglages_model.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => EventProvider()..loadEvents(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => EventProvider()..loadEvents()),
+        ChangeNotifierProvider(create: (_) => ReglagesModel()..charger()),
+      ],
       child: const CampusEventsApp(),
     ),
   );
@@ -23,7 +27,9 @@ class CampusEventsApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
-      themeMode: ThemeMode.system,
+      themeMode: context.watch<ReglagesModel>().sombre
+          ? ThemeMode.dark
+          : ThemeMode.light,
       home: const MainScreen(),
     );
   }
