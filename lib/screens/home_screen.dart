@@ -7,6 +7,7 @@ import '../widgets/loading_view.dart';
 import 'event_details_screen.dart';
 import 'formulaire_screen.dart';
 import '../models/event.dart';
+import '../providers/reglages_model.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -78,6 +79,17 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                         ],
+                      ),
+                      const Spacer(),
+                      IconButton(
+                        tooltip: 'Changer de thème',
+                        icon: Icon(
+                          context.watch<ReglagesModel>().sombre
+                              ? Icons.light_mode
+                              : Icons.dark_mode,
+                        ),
+                        onPressed: () =>
+                            context.read<ReglagesModel>().basculerTheme(),
                       ),
                     ],
                   ),
